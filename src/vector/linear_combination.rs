@@ -10,9 +10,7 @@ pub fn linear_combination
     let mut result = u[0].clone();
     result.scl(coefs[0]);
     for i in 1..coefs.len() {
-        let mut new_u = u[i].clone();
-        new_u.scl(coefs[i]);
-        result.add(&new_u);
+        result += &(u[i].clone() * coefs[i]);
     }
     result
 }

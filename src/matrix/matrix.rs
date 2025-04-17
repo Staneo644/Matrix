@@ -1,3 +1,5 @@
+
+#[derive(Clone, PartialEq, Eq, Default)]
 pub struct Matrix<K> {
     pub data: Vec<Vec<K>>,
 }

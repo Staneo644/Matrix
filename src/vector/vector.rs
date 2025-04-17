@@ -22,12 +22,6 @@ impl <K : std::clone::Clone> Vector<K> {
             data: data.to_vec(),
         }
     }
-
-    // pub fn from(data: [f32; 3]) -> Self {
-    //     Vector {
-    //         data: vec![data[0], data[1], data[2]],
-    //     }
-    // }
 }
 
 impl <K> Vector<K> {
