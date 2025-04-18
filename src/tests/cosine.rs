@@ -1,5 +1,5 @@
 use crate::vector::Vector;
-use crate::vector::cosine::angle_cos;
+use crate::fun::angle_cos;
 
 pub fn angle_cos_test() {
     let u = Vector::from(&[1., 0.]);

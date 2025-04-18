@@ -1,18 +1,18 @@
 use crate::matrix::Matrix;
 
-impl <K: std::ops::Add<Output = K> + Copy> Matrix<K> {
-    pub fn add(&mut self, other: &Matrix<K>) {
+impl <K: std::ops::Add<Output = K> + Copy, const ROWS: usize, const COLS: usize> Matrix<K, ROWS, COLS> {
+    pub fn add(&mut self, other: &Matrix<K, ROWS, COLS>) {
         *self += other;
     }
 }
 
-impl<K: std::ops::Add<Output = K> + Copy> std::ops::Add for Matrix<K> {
-    type Output = Matrix<K>;
+impl<K: std::ops::Add<Output = K> + Copy, const ROWS: usize, const COLS: usize> std::ops::Add for Matrix<K, ROWS, COLS> {
+    type Output = Matrix<K, ROWS, COLS>;
 
-    fn add(self, other: Matrix<K>) -> Matrix<K> {
+    fn add(self, other: Matrix<K, ROWS, COLS>) -> Matrix<K, ROWS, COLS> {
         let mut result = self.clone();
-        for i in 0..self.data.len() {
-            for j in 0..self.data[i].len() {
+        for i in 0..ROWS {
+            for j in 0..COLS {
                 result.data[i][j] = self.data[i][j] + other.data[i][j];    
             }
         }
@@ -20,8 +20,8 @@ impl<K: std::ops::Add<Output = K> + Copy> std::ops::Add for Matrix<K> {
     }
 }
 
-impl<K: std::ops::Add<Output = K> + Copy> std::ops::AddAssign<&Matrix<K>> for Matrix<K> {
-    fn add_assign(&mut self, other: &Matrix<K>) {
+impl<K: std::ops::Add<Output = K> + Copy, const ROWS: usize, const COLS: usize> std::ops::AddAssign<&Matrix<K, ROWS, COLS>> for Matrix<K, ROWS, COLS> {
+    fn add_assign(&mut self, other: &Matrix<K, ROWS, COLS>) {
         let result = self.clone() + other.clone();
         *self = result;
     }
@@ -29,19 +29,19 @@ impl<K: std::ops::Add<Output = K> + Copy> std::ops::AddAssign<&Matrix<K>> for Ma
 
 ////////////////////////////////////
 
-impl <K: std::ops::Sub<Output = K> + Copy> Matrix<K> {
-    pub fn sub(&mut self, other: &Matrix<K>) {
+impl <K: std::ops::Sub<Output = K> + Copy, const ROWS: usize, const COLS: usize> Matrix<K, ROWS, COLS> {
+    pub fn sub(&mut self, other: &Matrix<K, ROWS, COLS>) {
         *self -= other;
     }
 }
 
-impl<K: std::ops::Sub<Output = K> + Copy> std::ops::Sub for Matrix<K> {
-    type Output = Matrix<K>;
+impl<K: std::ops::Sub<Output = K> + Copy, const ROWS: usize, const COLS: usize> std::ops::Sub for Matrix<K, ROWS, COLS> {
+    type Output = Matrix<K, ROWS, COLS>;
 
-    fn sub(self, other: Matrix<K>) -> Matrix<K> {
+    fn sub(self, other: Matrix<K, ROWS, COLS>) -> Matrix<K, ROWS, COLS> {
         let mut result = self.clone();
-        for i in 0..self.data.len() {
-            for j in 0..self.data[i].len() {
+        for i in 0..ROWS {
+            for j in 0..COLS {
                 result.data[i][j] = self.data[i][j] - other.data[i][j];    
             }
         }
@@ -49,8 +49,8 @@ impl<K: std::ops::Sub<Output = K> + Copy> std::ops::Sub for Matrix<K> {
     }
 }
 
-impl<K: std::ops::Sub<Output = K> + Copy> std::ops::SubAssign<&Matrix<K>> for Matrix<K> {
-    fn sub_assign(&mut self, other: &Matrix<K>) {
+impl<K: std::ops::Sub<Output = K> + Copy, const ROWS: usize, const COLS: usize> std::ops::SubAssign<&Matrix<K, ROWS, COLS>> for Matrix<K, ROWS, COLS> {
+    fn sub_assign(&mut self, other: &Matrix<K, ROWS, COLS>) {
         let result = self.clone() - other.clone();
         *self = result;
     }
@@ -58,23 +58,19 @@ impl<K: std::ops::Sub<Output = K> + Copy> std::ops::SubAssign<&Matrix<K>> for Ma
 
 ///////////////////////////////////
 
-impl <K: std::ops::Mul<Output = K> + Copy> Matrix<K> {
+impl <K: std::ops::Mul<Output = K> + Copy, const ROWS: usize, const COLS: usize> Matrix<K, ROWS, COLS>{
     pub fn scl(&mut self, scalar: K) {
-        for i in 0..self.data.len() {
-            for j in 0..self.data[i].len() {
-                self.data[i][j] = self.data[i][j] * scalar;
-            }
-        }
+        *self *= scalar;
     }
 }
 
-impl<K: std::ops::Mul<Output = K> + Copy> std::ops::Mul<K> for Matrix<K> {
-    type Output = Matrix<K>;
+impl<K: std::ops::Mul<Output = K> + Copy, const ROWS: usize, const COLS: usize> std::ops::Mul<K> for Matrix<K, ROWS, COLS> {
+    type Output = Matrix<K, ROWS, COLS>;
 
-    fn mul(self, scalar: K) -> Matrix<K> {
+    fn mul(self, scalar: K) -> Matrix<K, ROWS, COLS> {
         let mut result = self.clone();
-        for i in 0..self.data.len() {
-            for j in 0..self.data[i].len() {
+        for i in 0..ROWS {
+            for j in 0..COLS {
                 result.data[i][j] = self.data[i][j] * scalar;
             }
         }
@@ -82,7 +78,7 @@ impl<K: std::ops::Mul<Output = K> + Copy> std::ops::Mul<K> for Matrix<K> {
     }
 }
 
-impl<K: std::ops::Mul<Output = K> + Copy> std::ops::MulAssign<K> for Matrix<K> {
+impl<K: std::ops::Mul<Output = K> + Copy, const ROWS: usize, const COLS: usize> std::ops::MulAssign<K> for Matrix<K, ROWS, COLS> {
     fn mul_assign(&mut self, scalar: K) {
         let result = self.clone() * scalar;
         *self = result;

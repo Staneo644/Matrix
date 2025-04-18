@@ -1,5 +1,5 @@
 use crate::vector::Vector;
-use crate::vector::linear_combination::linear_combination;
+use crate::fun::linear_combination;
 
 pub fn linear_combination_test() {
     let e1 = Vector::from(&[1., 0., 0.]);

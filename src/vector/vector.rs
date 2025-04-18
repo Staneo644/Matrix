@@ -28,6 +28,10 @@ impl <K> Vector<K> {
     pub fn new(data: Vec<K>) -> Self {
         Vector { data }
     }
+
+    pub fn len(&self) -> usize {
+        self.data.len()
+    }
 }
 
 impl<K> std::ops::Index<usize> for Vector<K> {
