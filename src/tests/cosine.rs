@@ -1,5 +1,5 @@
-use crate::vector::Vector;
 use crate::fun::angle_cos;
+use crate::vector::Vector;
 
 pub fn angle_cos_test() {
     let u = Vector::from(&[1., 0.]);
@@ -11,7 +11,7 @@ pub fn angle_cos_test() {
     println!("{}", angle_cos(&u, &v));
     // 0.0
     let u = Vector::from(&[-1., 1.]);
-    let v = Vector::from(&[ 1., -1.]);
+    let v = Vector::from(&[1., -1.]);
     println!("{}", angle_cos(&u, &v));
     // -1.0
     let u = Vector::from(&[2., 1.]);

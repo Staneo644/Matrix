@@ -1,4 +1,3 @@
-
 #[derive(Clone, PartialEq, Eq)]
 pub struct Matrix<K, const ROWS: usize = 0, const COLS: usize = 0> {
     pub data: [[K; COLS]; ROWS],
@@ -12,7 +11,9 @@ impl<K: Default + Copy, const ROWS: usize, const COLS: usize> Default for Matrix
     }
 }
 
-impl<K: std::fmt::Display, const ROWS: usize, const COLS: usize> std::fmt::Display for Matrix<K, ROWS, COLS>  {
+impl<K: std::fmt::Display, const ROWS: usize, const COLS: usize> std::fmt::Display
+    for Matrix<K, ROWS, COLS>
+{
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for i in 0..ROWS {
             match (i, ROWS) {
@@ -66,7 +67,6 @@ impl<K: Default + Copy, const ROWS: usize, const COLS: usize> Matrix<K, ROWS, CO
         }
     }
 
-
     pub fn is_square(&self) -> bool {
         self.data.len() == self.data[0].len()
     }
@@ -95,4 +95,3 @@ impl<K: std::fmt::Display, const ROWS: usize, const COLS: usize> Matrix<K, ROWS,
         println!("{}", self);
     }
 }
-

@@ -1,5 +1,5 @@
-use crate::vector::Vector;
 use crate::fun::cross_product;
+use crate::vector::Vector;
 
 pub fn cross_product_test() {
     let u = Vector::from(&[0., 0., 1.]);

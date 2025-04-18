@@ -1,10 +1,13 @@
-use crate::vector::Vector;
 use crate::matrix::Matrix;
+use crate::vector::Vector;
 
-impl<K: std::ops::Mul<Output = K> + Default + std::ops::AddAssign + Copy, 
-    const ROWS: usize, const COLS: usize
-> Matrix::<K, ROWS, COLS> {
-    pub fn mul_vec(&self, vec: Vector::<K>) -> Vector::<K> {
+impl<
+        K: std::ops::Mul<Output = K> + Default + std::ops::AddAssign + Copy,
+        const ROWS: usize,
+        const COLS: usize,
+    > Matrix<K, ROWS, COLS>
+{
+    pub fn mul_vec(&self, vec: Vector<K>) -> Vector<K> {
         let mut result = Vec::new();
         for i in 0..ROWS {
             let mut sum = K::default();
@@ -16,7 +19,7 @@ impl<K: std::ops::Mul<Output = K> + Default + std::ops::AddAssign + Copy,
         Vector::new(result)
     }
 
-    pub fn mul_mat(&self, mat: Matrix::<K, ROWS, COLS>) -> Matrix::<K, ROWS, COLS> {
+    pub fn mul_mat(&self, mat: Matrix<K, ROWS, COLS>) -> Matrix<K, ROWS, COLS> {
         let mut result = Vec::new();
         for i in 0..self.data.len() {
             let mut row = Vec::new();

@@ -1,6 +1,9 @@
 use crate::vector::Vector;
 
-pub fn cross_product<K: std::ops::Mul<Output = K> + std::ops::Sub<Output = K> + Copy>(u: &Vector::<K>, v: &Vector::<K>) -> Vector::<K> {
+pub fn cross_product<K: std::ops::Mul<Output = K> + std::ops::Sub<Output = K> + Copy>(
+    u: &Vector<K>,
+    v: &Vector<K>,
+) -> Vector<K> {
     if u.len() != 3 || v.len() != 3 {
         panic!("Cross product is only defined for 3D vectors");
     }

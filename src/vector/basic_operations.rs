@@ -1,7 +1,7 @@
 use crate::vector::Vector;
 
 impl<K: std::ops::Add<Output = K> + Copy> Vector<K> {
-    pub fn add(&mut self, other: &Vector<K>){
+    pub fn add(&mut self, other: &Vector<K>) {
         *self += other;
     }
 }
@@ -12,7 +12,7 @@ impl<K: std::ops::Add<Output = K> + Copy> std::ops::Add for Vector<K> {
     fn add(self, other: Vector<K>) -> Vector<K> {
         let mut result = self.clone();
         for i in 0..self.data.len() {
-            result.data[i] = self.data[i] + other.data[i];    
+            result.data[i] = self.data[i] + other.data[i];
         }
         result
     }
@@ -27,8 +27,8 @@ impl<K: std::ops::Add<Output = K> + Copy> std::ops::AddAssign<&Vector<K>> for Ve
 
 ////////////////////////////////////
 
-impl <K: std::ops::Sub<Output = K> + Copy> Vector<K> {
-    pub fn sub(&mut self, other: &Vector<K>){
+impl<K: std::ops::Sub<Output = K> + Copy> Vector<K> {
+    pub fn sub(&mut self, other: &Vector<K>) {
         *self -= other;
     }
 }
@@ -39,7 +39,7 @@ impl<K: std::ops::Sub<Output = K> + Copy> std::ops::Sub for Vector<K> {
     fn sub(self, other: Vector<K>) -> Vector<K> {
         let mut result = self.clone();
         for i in 0..self.data.len() {
-            result.data[i] = self.data[i] - other.data[i];    
+            result.data[i] = self.data[i] - other.data[i];
         }
         result
     }
@@ -54,7 +54,7 @@ impl<K: std::ops::Sub<Output = K> + Copy> std::ops::SubAssign<&Vector<K>> for Ve
 
 ////////////////////////////////////
 
-impl <K: std::ops::Mul<Output = K> + Copy> Vector<K> {
+impl<K: std::ops::Mul<Output = K> + Copy> Vector<K> {
     pub fn scl(&mut self, scalar: K) {
         *self *= scalar;
     }
@@ -66,7 +66,7 @@ impl<K: std::ops::Mul<Output = K> + Copy> std::ops::Mul<K> for Vector<K> {
     fn mul(self, scalar: K) -> Vector<K> {
         let mut result = self.clone();
         for i in 0..self.data.len() {
-            result.data[i] = self.data[i] * scalar;    
+            result.data[i] = self.data[i] * scalar;
         }
         result
     }

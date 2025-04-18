@@ -16,7 +16,7 @@ impl<K: std::fmt::Display> std::fmt::Display for Vector<K> {
     }
 }
 
-impl <K : std::clone::Clone> Vector<K> {
+impl<K: std::clone::Clone> Vector<K> {
     pub fn from(data: &[K]) -> Self {
         Vector {
             data: data.to_vec(),
@@ -24,7 +24,7 @@ impl <K : std::clone::Clone> Vector<K> {
     }
 }
 
-impl <K> Vector<K> {
+impl<K> Vector<K> {
     pub fn new(data: Vec<K>) -> Self {
         Vector { data }
     }
@@ -48,7 +48,7 @@ impl<K> std::ops::IndexMut<usize> for Vector<K> {
     }
 }
 
-impl <K: std::fmt::Display> Vector<K> {
+impl<K: std::fmt::Display> Vector<K> {
     pub fn print(&self) {
         println!("{}", self);
     }

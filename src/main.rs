@@ -1,8 +1,8 @@
 extern crate matrix;
 
-use crate::matrix::Vector;
+use crate::matrix::tests::*;
 use crate::matrix::Matrix;
-use crate::matrix::tests::{*};
+use crate::matrix::Vector;
 
 fn main() {
     // Create a new vector
@@ -22,7 +22,4 @@ fn main() {
     matrix3.print();
 
     basic_operations();
-
-
 }
-
