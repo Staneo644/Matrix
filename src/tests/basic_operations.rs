@@ -1,7 +1,7 @@
 use crate::matrix::Matrix;
 use crate::vector::Vector;
 
-pub fn basic_operations() {
+pub fn basic_operations_test() {
     let mut u = Vector::from(&[2., 3.]);
     let v = Vector::from(&[5., 7.]);
     u.add(&v);

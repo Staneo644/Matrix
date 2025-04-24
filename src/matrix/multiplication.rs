@@ -21,7 +21,7 @@ impl<
 
     pub fn mul_mat(&self, mat: Matrix<K, ROWS, COLS>) -> Matrix<K, ROWS, COLS> {
         let mut result = Vec::new();
-        for i in 0..self.data.len() {
+        for i in 0..ROWS {
             let mut row = Vec::new();
             for j in 0..mat.data[0].len() {
                 let mut sum = K::default();

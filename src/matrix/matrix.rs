@@ -1,3 +1,5 @@
+use num_traits::Signed;
+
 #[derive(Clone, PartialEq, Eq)]
 pub struct Matrix<K, const ROWS: usize = 0, const COLS: usize = 0> {
     pub data: [[K; COLS]; ROWS],
@@ -49,6 +51,16 @@ impl<K, const ROWS: usize, const COLS: usize> From<[[K; COLS]; ROWS]> for Matrix
     }
 }
 
+impl<K: Signed + Default + Copy, const ROWS: usize> Matrix<K, ROWS, ROWS> {
+    pub fn identity() -> Self {
+        let mut identity = Matrix::default();
+        for i in 0..ROWS {
+            identity.data[i][i] = K::one();
+        }
+        identity
+    }
+}
+
 impl<K: Default + Copy, const ROWS: usize, const COLS: usize> Matrix<K, ROWS, COLS> {
     pub fn new(data: Vec<Vec<K>>) -> Self {
         Matrix {
@@ -84,7 +96,9 @@ impl<K, const ROWS: usize, const COLS: usize> std::ops::Index<usize> for Matrix<
     }
 }
 
-impl<K: Copy> std::ops::IndexMut<usize> for Matrix<K> {
+impl<K: Copy, const ROWS: usize, const COLS: usize> std::ops::IndexMut<usize>
+    for Matrix<K, ROWS, COLS>
+{
     fn index_mut(&mut self, index: usize) -> &mut Self::Output {
         &mut self.data[index]
     }
