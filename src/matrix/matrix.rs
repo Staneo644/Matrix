@@ -1,4 +1,4 @@
-use num_traits::Signed;
+use num_traits::One;
 
 #[derive(Clone, PartialEq, Eq)]
 pub struct Matrix<K, const ROWS: usize = 0, const COLS: usize = 0> {
@@ -34,7 +34,7 @@ impl<K: std::fmt::Display, const ROWS: usize, const COLS: usize> std::fmt::Displ
 
             match (i, ROWS) {
                 (_, 1) => write!(f, " ]")?,
-                (x, len) if x == len - 1 && len > 1 => write!(f, " ┘")?,
+                (i, len) if i == len - 1 && len > 1 => write!(f, " ┘")?,
                 (0, _) => write!(f, " ┐")?,
                 _ => write!(f, " │")?,
             }
@@ -51,7 +51,7 @@ impl<K, const ROWS: usize, const COLS: usize> From<[[K; COLS]; ROWS]> for Matrix
     }
 }
 
-impl<K: Signed + Default + Copy, const ROWS: usize> Matrix<K, ROWS, ROWS> {
+impl<K: One + Default + Copy, const ROWS: usize> Matrix<K, ROWS, ROWS> {
     pub fn identity() -> Self {
         let mut identity = Matrix::default();
         for i in 0..ROWS {

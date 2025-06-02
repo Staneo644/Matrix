@@ -1,17 +1,19 @@
 use crate::matrix::Matrix;
-use num_traits::Signed;
+use num_traits::Zero;
+use num_traits::One;
 
 impl<
         K: Clone
             + std::ops::Mul<Output = K>
             + std::ops::DivAssign
             + std::ops::SubAssign
+            + std::ops::Div<Output = K>
             + Default
             + std::cmp::PartialEq
             + Copy
             + std::ops::MulAssign
             + std::fmt::Display
-            + Signed,
+            + Zero + One + std::ops::Neg<Output = K>,
         const ROWS: usize,
     > Matrix<K, ROWS, ROWS>
 {
@@ -36,7 +38,9 @@ impl<
             }
 
             for j in (i + 1)..ROWS {
-                let factor = matrix[j][i] / matrix[i][i];
+                let e = matrix[j][i];
+                let d = matrix[i][i];
+                let factor = e / d;
                 matrix.subtract_scaled_row(j, i, factor);
             }
         }

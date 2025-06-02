@@ -1,9 +1,11 @@
 use crate::matrix::Matrix;
-use num_traits::Signed;
+use num_traits::Zero;
 
 impl<
         K: std::ops::Mul<Output = K>
-            + Signed
+            // + std::ops::Div<Output = K>
+            + Zero
+            + std::ops::Div
             + std::ops::DivAssign
             + std::ops::MulAssign
             + std::ops::SubAssign

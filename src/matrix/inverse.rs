@@ -1,14 +1,18 @@
 use crate::matrix::Matrix;
-use num_traits::Signed;
+use num_traits::{Zero, One};
 
 impl<
-        K: Signed
-            + Default
+        K: Default
             + Copy
             + std::ops::Mul<Output = K>
             + std::ops::DivAssign
             + std::ops::MulAssign
             + std::ops::SubAssign
+            + std::cmp::PartialEq
+            + std::ops::Div<Output = K>
+            + std::ops::Neg<Output = K>
+            + Zero
+            + One
             + std::fmt::Display,
         const ROWS: usize,
     > Matrix<K, ROWS, ROWS>
@@ -50,7 +54,7 @@ impl<
     }
 }
 
-impl<K: Signed, const ROWS: usize, const COLS: usize> Matrix<K, ROWS, COLS> {
+impl<K: Zero + std::cmp::PartialEq, const ROWS: usize, const COLS: usize> Matrix<K, ROWS, COLS> {
     pub fn find_pivot(&self, r: usize, lead: &mut usize) -> usize {
         let mut i = r;
         while self[i][*lead] == K::zero() {

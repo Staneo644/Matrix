@@ -1,5 +1,6 @@
 pub mod basic_operations;
 pub mod cosine;
+pub mod complex;
 pub mod cross_product;
 pub mod determinant;
 pub mod dot_product;
@@ -14,7 +15,8 @@ pub mod trace;
 pub mod transpose;
 
 pub use basic_operations::basic_operations_test;
-pub use cosine::angle_cos_test;
+pub use cosine::cosine_test;
+pub use complex::Complex;
 pub use cross_product::cross_product_test;
 pub use determinant::determinant_test;
 pub use dot_product::dot_product_test;
